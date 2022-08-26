@@ -1,0 +1,22 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    // Iterate over s
+    // Look for the nearest index in t that matches s
+    // If we find it, chop t to it, if we never find it, we lose
+    for (let i = 0; i < s.length; ++i) {
+        const tIndex = t.indexOf(s.charAt(i));
+        if (tIndex === -1) return false;
+        t = t.slice(tIndex + 1);
+    };
+    return true;
+};
+
+/**
+ * Note:  A subsequence is NOT the same as a substring
+ * In a subsequence, inner characters may be removed, but characters may not be reordered
+ * Example: s = "abc", t = "ahbgdc" - true, there is a forward-only path to get "abc" by iterating over the string
+ */

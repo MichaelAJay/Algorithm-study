@@ -1,0 +1,29 @@
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+    let codex = {};
+    let codexValues = [];
+    for (let i = 0; i < s.length; ++i) {
+        const targetChar = s.charAt(i);
+        if (codex.hasOwnProperty(targetChar)) {
+            if (t.charAt(i) !== codex[targetChar]) return false
+            else continue;
+        }
+        else if (codexValues.includes(t.charAt(i))) return false
+        else {
+            codex[targetChar] = t.charAt(i);
+            codexValues.push(t.charAt(i));
+        }
+    };
+    return true;
+};
+
+/**
+ * Notes:
+ * Two strings s and t are isomorphic if the characters in s can be replaced to get t
+ * Example: s = "egg", t = "add" - true
+ * Example: s = "foo", t = "bar" - false, because the first instance of o maps to a, and may not then map to r
+ */
